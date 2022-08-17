@@ -53,6 +53,9 @@ function campos_capacitacion()
         tabla = JSON.parse(result);
         tabla_campos_capacitacion = tabla;
 
+        //document.getElementById("titulo").selectedIndex = 0;
+        $("#titulo").empty()
+
         $('#titulo').append($('<option>',
             {
                 value: 0,
