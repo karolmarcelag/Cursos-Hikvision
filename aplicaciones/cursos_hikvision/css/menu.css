@@ -1,0 +1,118 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+html,body {
+	margin:0;
+	padding:0;
+	height: 100%;
+}
+
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+section, header{
+	display: block;
+}
+
+a{
+	/*color: #333;*/
+	color: #000;
+	text-decoration: none;
+}
+.container{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+        margin-top:-35px;
+}
+.clr{
+	clear: both;
+}
+.container > header{
+	padding: 20px 30px 20px 30px;
+	margin: 0px 20px 10px 20px;
+	position: relative;
+	display: block;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        text-align: center;
+}
+
+.menu
+{
+    position: absolute;
+    width:100%;
+    z-index: 100;
+    top:0;
+}
+
+.ligas
+{
+    float:left;
+}
+
+.cerrar
+{
+    float:left;
+    width:15%;
+}
+
+.btn_menu
+{
+    font-family: 'Calibri', sans-serif;  
+    font-size:14px;
+    font-weight: bold;
+    height: 37px;
+    color:#000;
+    background: #CCC;
+    border:none;
+    text-decoration: none;
+}
+
+/*---------------*/
+.opciones
+{
+	background: #f1f1f1;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px #6d6d6d;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #c5c5c5;
+    z-index: 10;
+}
+
+.resultados
+{
+	font-family: 'Calibri', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.resultados:hover
+{
+    background:#cccccc;
+    cursor: hand;
+}

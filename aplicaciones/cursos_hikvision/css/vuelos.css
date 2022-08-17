@@ -1,0 +1,650 @@
+body {
+    font-family: 'Calibri', sans-serif;
+    font-size: 14px;
+}
+
+input, select {
+    height: 35px;
+    font-size: 13px;
+    text-align: center;
+    /*min-width: 70px;*/
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+}
+
+p {
+    font-weight: bold;
+}
+
+textarea {
+    font-family: 'Calibri', sans-serif;
+    resize: none;
+    height: 80px;
+    padding-top: 3px;
+    width: 68%;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+}
+
+.a1 {
+    position: absolute;
+    background: #cccccc;
+    width: 460px;
+    line-height: 1.5;
+    margin-left: 50%;
+    left: -230px;
+    padding: 10px;
+    border-radius: 3px;
+    z-index: 200;
+    display: none;
+}
+
+.a2 {
+    position: absolute;
+    background: #cccccc;
+    width: 460px;
+    line-height: 1.5;
+    margin-left: 50%;
+    left: -230px;
+    padding: 10px;
+    border-radius: 3px;
+    z-index: 200;
+    display: none;
+}
+
+.barra 
+{
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+}
+
+.barra table {
+    width: 100%;
+}
+
+.barra table tr td {
+    height: 30px;
+    text-align: center;
+}
+
+.btn_agregar {
+    height: 35px;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+}
+
+.btn_cerrar {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+}
+
+.contenido {
+    margin-left: 5%;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    /*background: #818181;*/
+}
+
+.cuadro2 {
+    margin-top: 30px;
+}
+
+.cuadro_reporte {
+    margin-top: 5px;
+}
+
+.enlace_contacto:hover {
+    color: blue;
+    cursor: hand;
+}
+
+.derecha {
+    display: inline-block;
+}
+
+.btn_cerrar {
+    width: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 6px;
+    margin-top: 6px;
+    cursor: hand;
+}
+
+.tabla_registros {
+    width: 100%;
+    font-family: 'Calibri', sans-serif;
+    font-size: 14px;
+}
+
+.mensaje_resultado 
+{
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 15px;
+}
+
+.titulo_tabla {
+    text-align: center;
+    font-weight: bold;
+}
+
+.barra table .tr {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}
+
+.tr:hover {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}
+
+.fecha_reporte {
+    width: 200px;
+    text-align: center;
+}
+
+.formato_descargar {
+    background: redx;
+    /*width:760px;*/
+    position: absolute;
+    right: 0;
+    margin-top: -35;
+    font-size: 12px;
+}
+
+.inp_buscar {
+    height: 35px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 70px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+}
+
+#fecha {
+    width: 200px;
+}
+
+#registrar_nuevo {
+    height: 30px;
+}
+
+.cuadro_calendario {
+    margin-top: 35px;
+    width: 100%;
+}
+
+.calendario {
+    width: 100%;
+    text-align: center;
+}
+
+.calendario td {
+    height: 110px;
+    width: 14.28%;
+    border: solid 1px #bdbdbd;
+    color: #cccccc;
+    border-radius: 4px;
+}
+
+.vacio {
+    border: solid 1px #fff;
+    color: #fff;
+}
+
+.titulos td {
+    height: 30px;
+    color: #000;
+}
+
+.numero {
+    color: #364246;
+    text-align: left;
+    margin-left: 8px;
+}
+
+.celda_contenido {
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.nomb_ing {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.input_filtro {
+    right: 0;
+    position: absolute;
+    margin-right: 75px;
+    width: 220px;
+}
+
+.input_boton {
+    height: 35px;
+    font-size: 13px;
+    text-align: center;
+    min-width: 70px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+    right: 0;
+    position: absolute;
+}
+
+.agregar_calendario {
+    position: absolute;
+    width: 530px;
+    background: #ffffff;
+    margin-top: 115px;
+    left: 50%;
+    margin-left: -271px;
+    padding: 5px;
+    padding-top: 25px;
+    border-radius: 3px;
+    border: solid 1px #a9a9a9;
+    z-index: 100;
+    top: -10px;
+}
+
+.test {
+    height: 20px
+}
+
+.titulo {
+    font-family: 'Calibri', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alter {
+    background: #eaeaea;
+    border-radius: 2px;
+}
+
+.lista_registros {
+    width: 100%;
+    font-family: 'Calibri', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.ver_reg {
+    position: absolute;
+    width: 600px;
+    background: #ffffff;
+    margin-top: 92px;
+    left: 50%;
+    margin-left: -300px;
+    padding: 5px;
+    padding-top: 25px;
+    border-radius: 3px;
+    border: solid 1px #a9a9a9;
+    z-index: 101;
+    top: -10px;
+}
+
+.mensaje {
+    background: #479e4b;
+    position: absolute;
+    width: 300px;
+    left: -150px;
+    margin-left: 50%;
+    margin-top: 65px;
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+    color: #ffff;
+    top: 0;
+    z-index: 101;
+}
+
+.tabla_registro {
+    /*background: red;*/
+    width: 100%;
+    font-family: 'Calibri', sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+.tabla_registro select, .tabla_registro input, .tabla_registro textarea {
+    width: 90%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(169, 169, 169);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.tabla_registro button {
+    height: 33px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    font-weight: bold;
+    width: 200px;
+    border-radius: 3px;
+}
+
+.tabla_registro td {
+    height: 40px;
+}
+
+.fondo_obscuro {
+    top: 0;
+    left: 0;
+    background: #0000009e;
+    width: 100%;
+    height: 300%;
+    position: absolute;
+    z-index: 100;
+}
+
+.fondo_obscuro_ref {
+    top: 0;
+    left: 0;
+    background: #0000009e;
+    width: 100%;
+    height: 145%;
+    position: absolute;
+    z-index: 100;
+}
+
+.ventana {
+    width: 15%;
+    height: 5%;
+    background: #ececec;
+    position: absolute;
+    top: 5%;
+    padding: 1%;
+    border-radius: 10px;
+    z-index: 101;
+    padding-top: 20px;
+    left: 41%;
+}
+
+.ventanareq {
+    width: 15%;
+    height: 5%;
+    background: #ececec;
+    position: absolute;
+    top: 35%;
+    padding: 1%;
+    border-radius: 10px;
+    z-index: 101;
+    padding-top: 20px;
+    left: 41%;
+}
+
+.div_registro_pendiente
+{
+    float: left;
+    margin-right: 1%;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.btn_registro_pendiente
+{
+    height: 18px;
+    font-size: 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+    position: absolute;
+}
+
+.color0 
+{
+    background: #e2e1e1;
+}
+
+.color1 
+{
+    background: #fff;
+}
+
+.respuesta
+{
+    border-radius: 0;
+    height: 16px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+}
+
+.respuesta2
+{
+    border-radius: 0;
+    height: 16px;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.contenedor_estadisticas
+{
+    margin-bottom: 1%;;
+    float: left;
+    margin-right: 1%;
+}
+
+.tabla_estadisticas
+{
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.tabla_estadisticas td
+{
+    height: 25px;
+    padding: 5px;
+}
+
+.pregunta
+{
+    font-family: 'Calibri', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.color_estadistica0
+{
+    background: #f1f1f1
+}
+
+.color_estadistica1
+{
+    background: #ffff
+}
+
+.resultado_curso
+{
+    background: #f1f1f1;
+    width: 20%;
+    margin-left: 39%;
+    padding: 1%;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.formula
+{
+    font-size: 11px;
+    font-style: italic;
+    margin-top: 10px;
+    /*text-align: center;*/
+    margin-bottom: 15px;
+}
+
+.btn_imprimir
+{
+    height: 18px;
+    font-size: 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 47px;
+}
+
+.div_ver_reg
+{
+    float: left;
+    margin-right: 1%;
+    margin-bottom: 2%;
+}
+
+.div_cambiar_fecha
+{
+    background: #CCC;
+    width: 40%;
+    position: absolute;
+    margin-left: 28%;
+    margin-top: 25px;
+    padding: 1%;
+    border-radius: 3px;
+}
+
+.input_boton_cambiar_fecha
+{
+    height: 26px;
+    font-size: 13px;
+    text-align: center;
+    min-width: 70px;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
+    right: 0;
+    position: relative;
+    width: 100%;
+}
+
+.esperar_estadisticas
+{
+    position: absolute;
+    left: 0;
+    width: 10%;
+    margin-top: 100;
+    margin-left: 45%;
+}
+
+.barra
+{
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+}
+
+.tabla_reporte
+{
+    border: solid #cecece 1px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tr_titulo
+{
+    text-align: center;
+    font-weight: bold;
+    border: solid #cecece 1px;
+}
+
+.reporte_color1
+{
+    background: #fff;
+}
+
+.reporte_color2
+{
+    background: #e8e8e8;
+}
+
+.td_reporte
+{
+    padding: 5px;
+    font-family: 'Calibri', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border: solid #cecece 1px;
+}
+
+.td_reporte_titulo
+{
+    height: 40px;
+    font-size: 13px;
+}
+
+.barra2
+{
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    margin-top: 72px;
+    background: #f8f8f8;
+}
+
+.seleccion_titulo
+{
+    width: 60%;
+    padding: .5%;
+    background: #f1f1f1;
+    color: 000;
+    border-radius: 9px;
+    margin-bottom: 10;
+    text-align: center;
+    margin-left: 19%;
+    cursor: hand;
+}
+
+.seleccion_titulo:hover
+{
+    background:#ccc;
+}
+
+.logo_impresion
+{
+    width: 200px;
+    display: none;
+    margin-left: -16px;
+}
+
+.textarea_notas_curso
+{
+    width: 100%; 
+    margin-bottom: 30px; 
+    padding: 10px; 
+    font-size: 14px; 
+    font-family: 'Calibri', sans-serif;
+}
