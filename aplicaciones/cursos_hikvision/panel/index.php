@@ -55,12 +55,12 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float:left; margin-top:10px;'>
                     Sucursal:<br>
-                    <select id='sucursal' style='width:170px'>
+                    <select id='sucursal' style='width:170px' onchange='campo_aforo()'>
                     </select>
                 </div>
                 <div style='float:left; margin-top:10px; margin-right: 10px;'>
                     Aforo:<br>
-                    <input type='number' style='width:170px; text-align: left; padding: 5px;' id='aforo' readonly>
+                    <input type='number' style='width:170px; padding: 5px;' id='aforo' readonly>
                 </div>
                 <div style='float:left; margin-top:10px; margin-right: 10px;'>
                     Tipo de Cliente:<br>
@@ -80,12 +80,12 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float:left; margin-top:10px;margin-right: 10px'>
                     Instructor:<br>
-                    <select id='instructor' style='width:170px'>
+                    <select id='instructor' style='width:170px' onchange='campo_correo()'>
                     </select>
                 </div>
                 <div style='float:left; margin-top:10px'>
                     Correo del Instructor:<br>
-                    <input type='text' style='width:350px; text-align: left; padding: 5px;' id='correo' maxlength='50' readonly>
+                    <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly onfocus='campos_aforo_correo()'>
                 </div>
                 <div style='float:left;'>
                     <button class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;'>Agregar</button>            

@@ -53,7 +53,6 @@ function campos_capacitacion()
         tabla = JSON.parse(result);
         tabla_campos_capacitacion = tabla;
 
-        //document.getElementById("titulo").selectedIndex = 0;
         $("#titulo").empty()
 
         $('#titulo').append($('<option>',
@@ -85,7 +84,13 @@ function campos_sucursal_instructor()
     {
         console.log(result)
         tabla = JSON.parse(result);
+        console.table(tabla)
         tabla_campos_sucursal_instructor = tabla;
+
+        $("#sucursal").empty()
+        $("#instructor").empty()
+        $("#aforo").val("")
+        $("#correo").val("")
 
         $('#sucursal').append($('<option>',
             {
@@ -120,83 +125,40 @@ function campos_sucursal_instructor()
     });
 }
 
-function ejemplo_seleccionar(_dato)
+function campo_aforo()
 {
-    $.post("funciones/buscar_nombre.php", 
+    $.post("../panel/funciones/campo_aforo.php",
     {
-        dato: _dato,
-        sw: 1
-    }, 
+        sucursal:$("#sucursal").val()
+    },
     function(result)
     {
-        if(parseInt(result) != -1)
-        {            
-            var tabla = JSON.parse(result);
-            global_nombre = tabla;
+        console.log(result)
+        tabla = JSON.parse(result);
+        tabla_campo_aforo = tabla;
+        
+        //document.getElementById("aforo").selectedIndex = 0;
+        
+        $("#aforo").val(tabla["sucursal"][0]["aforo"])
 
-            var tabla_nombres = ""+
-            "<div style='width:40%;'  class='opciones'>";
-                for(var x=0; x<tabla.length; x++)
-                {
-                    tabla_nombres +=
-                    "<div class='resultados' onclick='mostrar_nom(" + x + ")'>" + tabla[x]["nombres"] + " " + tabla[x]["apellidos"] + "</div>";
-                }
-                tabla_nombres +=
-            "</div>";
-        }
-        else
-        {   
-            $("#tabla_nombres").html("");
-        }
     });
 }
 
-function ejemplo_modificar_insertar(_id)
+function campo_correo()
 {
-    $.post("funciones/modificar_registros.php", 
+    $.post("../panel/funciones/campo_correo.php",
     {
-        id: _id,
-        fecha: $("#fecha_calendario"+_id).val(),     
-        hora: $("#hora_curso"+_id).val(),
-        tipo_capacitacion: $("#cap"+_id).val(),
-        division: $("#div"+_id).val(),
-        titulo_capacitacion: $("#titulo_capacitacion"+_id).val()
-    }, 
-    function(resultado)
+        instructor:$("#instructor").val()
+    },
+    function(result)
     {
-        if(parseInt(resultado) == 1)
-        {
-            mensaje("Registro modificado correctamente.","#4caf50","#fff");    
-            cargar_registros();        
-        }
-        else
-        {
-            alert("Ocurrió un problema, por favor contacte al administrador.\n\nError:" + resultado)
-        };                
-    });
-}
+        console.log(result)
+        tabla = JSON.parse(result);
+        tabla_campo_correo = tabla;
 
-function ejemplo_eliminar(_id)
-{
-    if (confirm("¿Realmente desea eliminar este registro?") == true) 
-    {
-        $.post("funciones/eliminar_registro.php", 
-        {
-            id_cursos: _id,        
-        }, 
-        function(resultado)
-        {        
-            if(parseInt(resultado) == 1)
-            {
-                mensaje("Registro eliminado correctamente.","#4caf50","#fff");        
-                cargar_registros();    
-            }
-            else
-            {
-                alert("Ocurrió un problema, por favor contacte al administrador.\n\nError:" + resultado)
-            };                
-        });
-    }
+        $("#correo").val(tabla["instructor"][0]["correo"])
+
+    });
 }
 
 function abrir_formulario()
