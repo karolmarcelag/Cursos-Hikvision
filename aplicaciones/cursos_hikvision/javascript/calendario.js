@@ -137,8 +137,6 @@ function campo_aforo()
         tabla = JSON.parse(result);
         tabla_campo_aforo = tabla;
         
-        //document.getElementById("aforo").selectedIndex = 0;
-        
         $("#aforo").val(tabla["sucursal"][0]["aforo"])
 
     });
