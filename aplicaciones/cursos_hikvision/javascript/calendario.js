@@ -8,6 +8,10 @@ $(document).ready(function()
             cargar_registros(global);
         }
     });
+    $("#guardar").click(function(e)
+    {
+        agregar_registro()
+    })
 });
 
 function cargar_region()
@@ -157,6 +161,78 @@ function campo_correo()
         $("#correo").val(tabla["instructor"][0]["correo"])
 
     });
+}
+
+function agregar_registro()
+{
+    /*console.log("Fecha: "+$("#fecha").val())
+    console.log("Hora: "+$("#hora").val())*/
+    if(validar() == true)
+    {
+        $.post("../panel/funciones/guardar_registro.php",
+        {
+            fecha: $("#fecha").val(),
+            hora: $("#hora").val(),
+            tipo_capacitacion: $("#tipo_capacitacion").val(),
+            titulo: $("#titulo").val(),
+            region: $("#region").val(),
+            sucursal: $("#sucursal").val(),
+            aforo: $("#aforo").val(),
+            tipo_cliente: $("#tipo_cliente").val(),
+            publicar: $("#publicar").val(),
+            instructor: $("#instructor").val(),
+            correo: $("#correo").val()
+        },
+        function(respuesta)
+        {
+            switch(parseInt(respuesta))
+            {
+                case 1:
+                    {
+                        alert("Registro agregado correctamente")
+                    }
+                    break
+                default:
+                    {
+                        alert("Ocurrió un error, por favor contacta al administrador\n\nError: " + respuesta)
+                    }
+                    break
+            }
+        })
+    }
+    else
+    {
+        alert("Por favor complete correctamente los campos en color rojo")
+    }
+}
+
+function validar()
+{
+    var input_texto = ["fecha", "hora", "tipo_capacitacion", "titulo", "region", "sucursal", "tipo_cliente", "publicar", "instructor"]
+    var acumulado = 0
+
+    for(x=0; x<input_texto.length; x++)
+    {
+        var id = "#" + input_texto[x]
+            if($(id).val() == 0 || $(id).val() == "")
+            {
+                acumulado++
+                $(id).css({"border":"solid 1px red"})
+            }
+            else
+            {
+                $(id).css({"border":"solid 1px #a9a9a9"})
+            }
+    }
+
+    if(acumulado > 0)
+    {
+        return false
+    }
+    else
+    {
+        return true
+    }
 }
 
 function abrir_formulario()

@@ -33,12 +33,12 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float: left;margin-right: 10px;'>
                     Hora Inicio:<br>
-                    <input type='time' id='hora' name='hora_curso' min='08:00' max='17:00' required style='width: 170px;'>
+                    <input type='time' id='hora' name='hora_curso' min='08:00' max='17:00' style='width: 170px;'>
                 </div>  
                 <div style='float:left;'>
                     Tipo de Capacitación:<br>
                     <select id='tipo_capacitacion' style='width: 170px;' onchange='campos_capacitacion()'>
-                        <option value=''>Seleccione una opción..</option>
+                        <option value='0'>Seleccione una opción..</option>
                         <option value='1'>Plática Comercial</option>
                         <option value='2'>Certificación</option>
                     </select>
@@ -65,7 +65,7 @@ if($h14 == "autorizado")
                 <div style='float:left; margin-top:10px; margin-right: 10px;'>
                     Tipo de Cliente:<br>
                     <select id='tipo_cliente' style='width:170px'>
-                        <option value=''>Seleccione una opción..</option>
+                        <option value='0'>Seleccione una opción..</option>
                         <option value='1'>Clientes en General</option>
                         <option value='2'>DPP</option>
                     </select>
@@ -73,9 +73,9 @@ if($h14 == "autorizado")
                 <div style='float:left; margin-top:10px;'>
                     Se publica en SYSCOM.MX?<br>
                     <select id='publicar' style='width:170px'>
-                        <option value=''>Seleccione una opción..</option>
+                        <option value='0'>Seleccione una opción..</option>
                         <option value='1'>Si</option>
-                        <option value='0'>No</option>
+                        <option value='2'>No</option>
                     </select>
                 </div>
                 <div style='float:left; margin-top:10px;margin-right: 10px'>
@@ -85,10 +85,10 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float:left; margin-top:10px'>
                     Correo del Instructor:<br>
-                    <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly onfocus='campos_aforo_correo()'>
+                    <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly>
                 </div>
                 <div style='float:left;'>
-                    <button class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;'>Agregar</button>            
+                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='agregar_registro()'>Agregar</button>            
                 </div>
                 <br>
             </div>
