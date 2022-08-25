@@ -33,7 +33,7 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float: left;margin-right: 10px;'>
                     Hora Inicio:<br>
-                    <input type='time' id='hora' name='hora_curso' min='08:00' max='17:00' style='width: 170px;'>
+                    <input type='time' id='hora' style='width: 170px;'>
                 </div>  
                 <div style='float:left;'>
                     Tipo de Capacitación:<br>
@@ -88,7 +88,7 @@ if($h14 == "autorizado")
                     <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly>
                 </div>
                 <div style='float:left;'>
-                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='agregar_registro()'>Agregar</button>            
+                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='guardar_registro()'>Agregar</button>            
                 </div>
                 <br>
             </div>

@@ -1,16 +1,17 @@
 var global_nombre = new Array(); /* ejemplo variable global */
+var tabla_cursos
 
 $(document).ready(function()
 {    
-    $("#buscar").keypress(function(e){
+    /*$("#buscar").keypress(function(e){
         if(e.which == 13) 
         {     
             cargar_registros(global);
         }
-    });
+    });*/
     $("#guardar").click(function(e)
     {
-        agregar_registro()
+        guardar_registro()
     })
 });
 
@@ -163,10 +164,9 @@ function campo_correo()
     });
 }
 
-function agregar_registro()
+function guardar_registro()
 {
-    /*console.log("Fecha: "+$("#fecha").val())
-    console.log("Hora: "+$("#hora").val())*/
+    $("#guardar").prop({"disabled":true})
     if(validar() == true)
     {
         $.post("../panel/funciones/guardar_registro.php",
@@ -174,14 +174,10 @@ function agregar_registro()
             fecha: $("#fecha").val(),
             hora: $("#hora").val(),
             tipo_capacitacion: $("#tipo_capacitacion").val(),
-            titulo: $("#titulo").val(),
-            region: $("#region").val(),
             sucursal: $("#sucursal").val(),
-            aforo: $("#aforo").val(),
             tipo_cliente: $("#tipo_cliente").val(),
             publicar: $("#publicar").val(),
-            instructor: $("#instructor").val(),
-            correo: $("#correo").val()
+            instructor: $("#instructor").val()
         },
         function(respuesta)
         {
@@ -190,6 +186,7 @@ function agregar_registro()
                 case 1:
                     {
                         alert("Registro agregado correctamente")
+                        limpiar()
                     }
                     break
                 default:
@@ -198,6 +195,10 @@ function agregar_registro()
                     }
                     break
             }
+            console.log("Fecha: "+$("#fecha").val())
+            console.log("Hora: "+$("#hora").val())
+            console.log(respuesta)
+            $("#guardar").prop({"disabled":false})
         })
     }
     else
@@ -208,13 +209,43 @@ function agregar_registro()
 
 function validar()
 {
-    var input_texto = ["fecha", "hora", "tipo_capacitacion", "titulo", "region", "sucursal", "tipo_cliente", "publicar", "instructor"]
+    var input_fecha = ["fecha"]
+    var input_hora = ["hora"]
+    var input_texto = ["tipo_capacitacion", "sucursal", "tipo_cliente", "publicar", "instructor"]
     var acumulado = 0
+
+    for(x=0; x<input_fecha.length; x++)
+    {
+        var id = "#" + input_fecha[x]
+            if($(id).val() == "")
+            {
+                acumulado++
+                $(id).css({"border":"solid 1px red"})
+            }
+            else
+            {
+                $(id).css({"border":"solid 1px #a9a9a9"})
+            }
+    }
+
+    for(x=0; x<input_hora.length; x++)
+    {
+        var id = "#" + input_hora[x]
+            if($(id).val() == "")
+            {
+                acumulado++
+                $(id).css({"border":"solid 1px red"})
+            }
+            else
+            {
+                $(id).css({"border":"solid 1px #a9a9a9"})
+            }
+    }
 
     for(x=0; x<input_texto.length; x++)
     {
         var id = "#" + input_texto[x]
-            if($(id).val() == 0 || $(id).val() == "")
+            if($(id).val() == 0)
             {
                 acumulado++
                 $(id).css({"border":"solid 1px red"})
@@ -235,6 +266,21 @@ function validar()
     }
 }
 
+function limpiar()
+{
+    $("#fecha").val("")
+    $("#hora").val("")
+    $("#tipo_capacitacion").val("")
+    $("#titulo").val("")
+    $("#region").val("")
+    $("#sucursal").val("")
+    $("#aforo").val("")
+    $("#tipo_cliente").val("")
+    $("#publicar").val("")
+    $("#instructor").val("")
+    $("#correo").val("")
+}
+
 function abrir_formulario()
 {
     $("#boton_agregar").css({"display":"none"})
@@ -247,4 +293,132 @@ function cerrar_formulario()
     $("#boton_agregar").css({"display":"block"})
     $("#boton_agregar").show(500)
     $("#formulario").css({"display":"none"})
+    mostrar_registros()
+}
+
+function mostrar_registros()
+{
+    $.post("../panel/funciones/mostrar_registros.php",
+    {
+    },
+    function(respuesta)
+    {
+        switch(parseInt(respuesta))
+        {
+            case -1:
+                {
+                    $("#tabla").html("<div style='width:100%; margin-top:15px; '><b>Aún no hay registros</b></div>")
+                }
+                break
+            default:
+                {
+                    var tabla = JSON.parse(respuesta)
+                    tabla_cursos = tabla
+                    console.log(respuesta)
+                    console.log(tabla)
+
+                    var codigo = ""+
+                    "<table style='margin-top:15px; width:100%;'>"+
+                        "<tr>"+
+                            "<td>id</td>"+
+                            "<td><b>Fecha<b></td>"+
+                            "<td><b>Hora<b></td>"+
+                            "<td>Instructor</td>"+
+                            "<td><b>Tipo de Capacitación<b></td>"+
+                            "<td>Tipo de Cliente</td>"+
+                            "<td><b>Sucursal<b></td>"+
+                            "<td>Publicar?</td>"+
+                        "</tr>"
+                    for(x=0; x<tabla.length; x++)
+                    {
+                        var tipo_capacitacion = ""
+                        switch(parseInt(tabla[x]["Tipo de Capacitación"]))
+                        {
+                            case 1:
+                                {
+                                    tipo_capacitacion = "HCSA-CCTV"
+                                }
+                                break
+                            case 2:
+                                {
+                                    tipo_capacitacion = "HCSA-Alarm"
+                                }
+                                break
+                            case 3:
+                                {
+                                    tipo_capacitacion = "HCSA-Access Control"
+                                }
+                                break
+                            case 4:
+                                {
+                                    tipo_capacitacion = "HCSA-Video Intercom"
+                                }
+                                break
+                            case 5:
+                                {
+                                    tipo_capacitacion = "HCSA-Cloud"
+                                }
+                                break
+                            case 6:
+                                {
+                                    tipo_capacitacion = "HCSA-VMS"
+                                }
+                                break
+                            case 7:
+                                {
+                                    tipo_capacitacion = "HCSP-VMS"
+                                }
+                                break
+                            case 8:
+                                {
+                                    tipo_capacitacion = "Videovigilancia"
+                                }
+                                break
+                            case 9:
+                                {
+                                    tipo_capacitacion = "Control de Acceso"
+                                }
+                                break
+                            case 10:
+                                {
+                                    tipo_capacitacion = "Alarmas"
+                                }
+                                break
+                            case 11:
+                                {
+                                    tipo_capacitacion = "Intercom"
+                                }
+                                break
+                            case 12:
+                                {
+                                    tipo_capacitacion = "Cloud"
+                                }
+                                break
+                            case 13:
+                                {
+                                    tipo_capacitacion = "Hikcentral"
+                                }
+                                break
+                        }
+
+                        codigo+=
+                        "<tr>"+
+                            "<td>" + tabla[x]["id"] + "</td>"+
+                            "<td>" + tabla[x]["fecha"] + "</td>"+
+                            "<td>" + tabla[x]["hora"] + "</td>"+
+                            "<td>" + tabla[x]["instructor"] + "</td>"+
+                            "<td>" + tabla[x]["tipo_capacitacion"] + "</td>"+
+                            "<td>" + tabla[x]["tipo_cliente"] + "</td>"+
+                            "<td>" + tabla[x]["sucursal"] + "</td>"+
+                            "<td>" + tabla[x]["publicar"] + "</td>"+
+                        "</tr>"
+                    }
+                    codigo+=
+                    "</table>"
+
+                    $("#tabla").html(codigo)
+                }
+                break
+        }
+    })
 }
