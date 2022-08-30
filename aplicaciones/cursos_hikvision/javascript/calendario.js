@@ -17,6 +17,7 @@ $(document).ready(function()
 
 function cargar_region()
 {
+    mostrar_registros()
     $.post("../panel/funciones/cargar_region.php",
     {
 
@@ -166,14 +167,14 @@ function campo_correo()
 
 function guardar_registro()
 {
-    $("#guardar").prop({"disabled":true})
     if(validar() == true)
     {
+        $("#guardar").prop({"disabled":true})
         $.post("../panel/funciones/guardar_registro.php",
         {
             fecha: $("#fecha").val(),
             hora: $("#hora").val(),
-            tipo_capacitacion: $("#tipo_capacitacion").val(),
+            titulo: $("#titulo").val(),
             sucursal: $("#sucursal").val(),
             tipo_cliente: $("#tipo_cliente").val(),
             publicar: $("#publicar").val(),
@@ -195,10 +196,10 @@ function guardar_registro()
                     }
                     break
             }
+            $("#guardar").prop({"disabled":false})
             console.log("Fecha: "+$("#fecha").val())
             console.log("Hora: "+$("#hora").val())
             console.log(respuesta)
-            $("#guardar").prop({"disabled":false})
         })
     }
     else
@@ -211,7 +212,7 @@ function validar()
 {
     var input_fecha = ["fecha"]
     var input_hora = ["hora"]
-    var input_texto = ["tipo_capacitacion", "sucursal", "tipo_cliente", "publicar", "instructor"]
+    var input_texto = ["titulo", "sucursal", "tipo_cliente", "publicar", "instructor"]
     var acumulado = 0
 
     for(x=0; x<input_fecha.length; x++)
@@ -283,138 +284,126 @@ function limpiar()
 
 function abrir_formulario()
 {
-    $("#boton_agregar").css({"display":"none"})
     $("#formulario").css({"display":"block"})
     $("#formulario").show(500)
 }
 
 function cerrar_formulario()
 {
-    $("#boton_agregar").css({"display":"block"})
-    $("#boton_agregar").show(500)
     $("#formulario").css({"display":"none"})
-    mostrar_registros()
 }
 
 function mostrar_registros()
 {
     $.post("../panel/funciones/mostrar_registros.php",
     {
+        filtro:$("#buscar").val()
     },
     function(respuesta)
     {
+        $("#buscar").val("")
+        
         switch(parseInt(respuesta))
         {
             case -1:
                 {
-                    $("#tabla").html("<div style='width:100%; margin-top:15px; '><b>Aún no hay registros</b></div>")
+                    $("#tabla").html("<div style='width:100%; margin-top:15px;'><b>Aún no hay registros</b></div>")
                 }
                 break
             default:
                 {
                     var tabla = JSON.parse(respuesta)
                     tabla_cursos = tabla
-                    console.log(respuesta)
-                    console.log(tabla)
 
                     var codigo = ""+
-                    "<table style='margin-top:15px; width:100%;'>"+
-                        "<tr>"+
-                            "<td>id</td>"+
-                            "<td><b>Fecha<b></td>"+
-                            "<td><b>Hora<b></td>"+
-                            "<td>Instructor</td>"+
-                            "<td><b>Tipo de Capacitación<b></td>"+
-                            "<td>Tipo de Cliente</td>"+
-                            "<td><b>Sucursal<b></td>"+
-                            "<td>Publicar?</td>"+
-                        "</tr>"
-                    for(x=0; x<tabla.length; x++)
-                    {
-                        var tipo_capacitacion = ""
-                        switch(parseInt(tabla[x]["Tipo de Capacitación"]))
+                    "<div class='cuadro1' style='overflow:auto; height:80%; margin-top:33px'>"+
+                        "<table style='width:90%; margin:auto; border-spacing:0;'>"+
+                            "<thead style='position:sticky; top:0; background-color: #FFF'>"+
+                                "<tr>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Fecha<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Hora<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Instructor</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Correo</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Título de Capacitación<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Capacitación<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Cliente</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Sucursal<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Publicar en SYSCOM.MX?</td>"+
+                                "</tr>"+
+                            "</thead>"
+                        console.log(tabla.length)
+                        a = 1
+                        for(x=0; x<tabla.length; x++)
                         {
-                            case 1:
-                                {
-                                    tipo_capacitacion = "HCSA-CCTV"
-                                }
-                                break
-                            case 2:
-                                {
-                                    tipo_capacitacion = "HCSA-Alarm"
-                                }
-                                break
-                            case 3:
-                                {
-                                    tipo_capacitacion = "HCSA-Access Control"
-                                }
-                                break
-                            case 4:
-                                {
-                                    tipo_capacitacion = "HCSA-Video Intercom"
-                                }
-                                break
-                            case 5:
-                                {
-                                    tipo_capacitacion = "HCSA-Cloud"
-                                }
-                                break
-                            case 6:
-                                {
-                                    tipo_capacitacion = "HCSA-VMS"
-                                }
-                                break
-                            case 7:
-                                {
-                                    tipo_capacitacion = "HCSP-VMS"
-                                }
-                                break
-                            case 8:
-                                {
-                                    tipo_capacitacion = "Videovigilancia"
-                                }
-                                break
-                            case 9:
-                                {
-                                    tipo_capacitacion = "Control de Acceso"
-                                }
-                                break
-                            case 10:
-                                {
-                                    tipo_capacitacion = "Alarmas"
-                                }
-                                break
-                            case 11:
-                                {
-                                    tipo_capacitacion = "Intercom"
-                                }
-                                break
-                            case 12:
-                                {
-                                    tipo_capacitacion = "Cloud"
-                                }
-                                break
-                            case 13:
-                                {
-                                    tipo_capacitacion = "Hikcentral"
-                                }
-                                break
-                        }
+                            var tipo_capacitacion = ""
+                            switch(parseInt(tabla[x]["tipo_capacitacion"]))
+                            {
+                                case 1:
+                                    {
+                                        tipo_capacitacion = "Plática Comercial"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        tipo_capacitacion = "Certificación"
+                                    }
+                                    break
+                            }
+                            var tipo_cliente = ""
+                            switch(parseInt(tabla[x]["tipo_cliente"]))
+                            {
+                                case 1:
+                                    {
+                                        tipo_cliente = "Clientes en General"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        tipo_cliente = "DPP"
+                                    }
+                                    break
+                            }
+                            var publicar = ""
+                            switch(parseInt(tabla[x]["publicar"]))
+                            {
+                                case 1:
+                                    {
+                                        publicar = "Si"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        publicar = "No"
+                                    }
+                                    break
+                            }
 
+                                codigo+=
+                            "<tbod>"+
+                                "<tr class='color"+ a +"'>"+
+                                    "<td style='padding:3.5px; width:9%; text-align:center'>" + tabla[x]["fecha"] + "</td>"+
+                                    "<td style='padding:3.5px; width:7%; text-align:center'>" + tabla[x]["hora"] + "</td>"+
+                                    "<td style='padding:3.5px; width:11%; text-align:center'>" + tabla[x]["nombre"] + " " + tabla[x]["apellido"] + "</td>"+
+                                    "<td style='padding:3.5px; width:17%; text-align:center'>" + tabla[x]["correo"] + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["titulo_capacitacion"] + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + tipo_capacitacion + "</td>"+
+                                    "<td style='padding:3.5px; width: 13%; text-align:center'>" + tipo_cliente + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["sucursal"] + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + publicar + "</td>"+
+                                "</tr>"+
+                            "</tbod>"
+                            if(a==1)
+                            {
+                                a = 2
+                            }
+                            else
+                            {
+                                a = 1
+                            }
+                        }
                         codigo+=
-                        "<tr>"+
-                            "<td>" + tabla[x]["id"] + "</td>"+
-                            "<td>" + tabla[x]["fecha"] + "</td>"+
-                            "<td>" + tabla[x]["hora"] + "</td>"+
-                            "<td>" + tabla[x]["instructor"] + "</td>"+
-                            "<td>" + tabla[x]["tipo_capacitacion"] + "</td>"+
-                            "<td>" + tabla[x]["tipo_cliente"] + "</td>"+
-                            "<td>" + tabla[x]["sucursal"] + "</td>"+
-                            "<td>" + tabla[x]["publicar"] + "</td>"+
-                        "</tr>"
-                    }
-                    codigo+=
-                    "</table>"
+                        "</table>"+
+                    "</div>"
 
                     $("#tabla").html(codigo)
                 }

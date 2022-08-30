@@ -9,6 +9,7 @@ if($h14 == "autorizado")
         <head>
             <title>Cursos Hikvision</title>
             <link rel="stylesheet" type="text/css" href="../css/vuelos.css" media="all"/>
+            <link href="../css/estilo.css" rel="stylesheet">
             <link rel="icon" type="image/ico" href="/favicon.ico"/>
             <script src="../javascript/jquery-3.3.1.js"></script>
             <script src="../javascript/jquery-3.3.1.min.js"></script>
@@ -20,8 +21,13 @@ if($h14 == "autorizado")
             <?php include "menu.php";?>
             </div>
 
-            <div style='float:left;'>
-                <button id='boton_agregar' class='input_boton' style='position: relative; margin-top: 70px; margin-bottom: 1px; left: 50px; width: 100px; cursor:hand; display: block;' onclick='abrir_formulario()'>Agregar Curso</button>            
+            <div class='buscar'>
+                <button id='boton_agregar' class='input_boton' style='float:left; position:relative; left:5%; width:10%; cursor:hand; display: block;' onclick='abrir_formulario()'>Agregar Curso</button>
+                <div class='buscador' style="margin-top:55px; position:relative; right:6%; display:block;">
+                    <input id="buscar" type="text" name="buscar" placeholder="Instructor, capacitación o sucursal." style="width:75%; text-align:left; padding:5px; margin-right:21%">
+                    <!--<input type="submit" value="Buscar" style="cursor:hand; width:20%">-->
+                    <button id='boton_buscar' class='input_boton' style='width: 20%; cursor:hand' onclick='mostrar_registros()'>Buscar</button>
+                </div>
             </div>
 
             <div id='formulario' class='agregar_calendario' style='display: none;'>
@@ -88,11 +94,11 @@ if($h14 == "autorizado")
                     <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly>
                 </div>
                 <div style='float:left;'>
-                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='guardar_registro()'>Agregar</button>            
+                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='mostrar_registros()'>Agregar</button>            
                 </div>
                 <br>
             </div>
-
+            <span id="tabla"></span>
         </body>
     </html>
 <?php
