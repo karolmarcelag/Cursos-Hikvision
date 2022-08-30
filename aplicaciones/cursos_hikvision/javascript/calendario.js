@@ -190,6 +190,11 @@ function guardar_registro()
                         limpiar()
                     }
                     break
+                case 2:
+                    {
+                        alert("Esta fecha ya está ocupada")
+                    }
+                    break
                 default:
                     {
                         alert("Ocurrió un error, por favor contacta al administrador\n\nError: " + respuesta)
@@ -302,12 +307,12 @@ function mostrar_registros()
     function(respuesta)
     {
         $("#buscar").val("")
-        
+
         switch(parseInt(respuesta))
         {
             case -1:
                 {
-                    $("#tabla").html("<div style='width:100%; margin-top:15px;'><b>Aún no hay registros</b></div>")
+                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b>Aún no hay registros</b></div>")
                 }
                 break
             default:
