@@ -15,9 +15,21 @@ $(document).ready(function()
     })
 });
 
-function cargar_region()
+function cargar_region(tipo)
 {
-    mostrar_registros()
+    switch(parseInt(tipo))
+    {
+        case 1:
+            {
+                mostrar_registros()
+            }
+            break
+        case 2:
+            {
+                mostrar_registros_pendientes()
+            }
+            break
+    }
     $.post("../panel/funciones/cargar_region.php",
     {
 
@@ -416,3 +428,148 @@ function mostrar_registros()
         }
     })
 }
+
+function mostrar_registros_pendientes()
+{
+    $.post("../panel/funciones/mostrar_registros.php",
+    {
+        filtro:$("#buscar").val()
+    },
+    function(respuesta)
+    {
+        $("#buscar").val("")
+
+        switch(parseInt(respuesta))
+        {
+            case -1:
+                {
+                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b>Aún no hay registros</b></div>")
+                }
+                break
+            default:
+                {
+                    var tabla = JSON.parse(respuesta)
+                    tabla_cursos = tabla
+
+                    var codigo = ""+
+                    "<div class='cuadro1' style='overflow:auto; height:80%; margin-top:33px'>"+
+                        "<table style='width:90%; margin:auto; border-spacing:0;'>"+
+                            "<thead style='position:sticky; top:0; background-color: #FFF'>"+
+                                "<tr>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Fecha<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Hora<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Instructor</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Correo</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Título de Capacitación<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Capacitación<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Cliente</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Sucursal<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Publicar en SYSCOM.MX?</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b><b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b></td>"+
+                                "</tr>"+
+                            "</thead>"
+                        console.log(tabla.length)
+                        a = 1
+                        for(x=0; x<tabla.length; x++)
+                        {
+                            var tipo_capacitacion = ""
+                            switch(parseInt(tabla[x]["tipo_capacitacion"]))
+                            {
+                                case 1:
+                                    {
+                                        tipo_capacitacion = "Plática Comercial"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        tipo_capacitacion = "Certificación"
+                                    }
+                                    break
+                            }
+                            var tipo_cliente = ""
+                            switch(parseInt(tabla[x]["tipo_cliente"]))
+                            {
+                                case 1:
+                                    {
+                                        tipo_cliente = "Clientes en General"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        tipo_cliente = "DPP"
+                                    }
+                                    break
+                            }
+                            var publicar = ""
+                            switch(parseInt(tabla[x]["publicar"]))
+                            {
+                                case 1:
+                                    {
+                                        publicar = "Si"
+                                    }
+                                    break
+                                case 2:
+                                    {
+                                        publicar = "No"
+                                    }
+                                    break
+                            }
+
+                                codigo+=
+                            "<tbod>"+
+                                "<tr class='color"+ a +"'>"+
+                                    "<td style='padding:3.5px; width:8%; text-align:center'>" + tabla[x]["fecha"] + "</td>"+
+                                    "<td style='padding:3.5px; width:6%; text-align:center'>" + tabla[x]["hora"] + "</td>"+
+                                    "<td style='padding:3.5px; width:12%; text-align:center'>" + tabla[x]["nombre"] + " " + tabla[x]["apellido"] + "</td>"+
+                                    "<td style='padding:3.5px; width:15%; text-align:center'>" + tabla[x]["correo"] + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["titulo_capacitacion"] + "</td>"+
+                                    "<td style='padding:3.5px; width:11%; text-align:center'>" + tipo_capacitacion + "</td>"+
+                                    "<td style='padding:3.5px; width:13%; text-align:center'>" + tipo_cliente + "</td>"+
+                                    "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["sucursal"] + "</td>"+
+                                    "<td style='padding:3.5px; width:7%; text-align:center'>" + publicar + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='eliminar"+ x +"'>" + "<button id='boton_eliminar' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='eliminar_registro()'>Eliminar</button>" + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='registrado"+ x +"'>" + "<button id='boton_registrado' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='registro_listo()'>Listo</button>" + "</td>"+
+                                "</tr>"+
+                            "</tbod>"
+                            if(a==1)
+                            {
+                                a = 2
+                            }
+                            else
+                            {
+                                a = 1
+                            }
+                        }
+                        codigo+=
+                        "</table>"+
+                    "</div>"
+
+                    $("#tabla").html(codigo)
+                }
+                break
+        }
+    })
+}
+
+/*function eliminar_registro()
+{
+    $.post("../panel/funciones/eliminar_registro.php",
+    {
+    },
+    function(respuesta)
+    {
+
+    })
+}
+
+function registro_listo()
+{
+    $.post("../panel/funciones/registro_listo.php",
+    {
+    },
+    function(respuesta)
+    {
+
+    })
+}*/

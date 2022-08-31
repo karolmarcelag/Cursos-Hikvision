@@ -15,18 +15,17 @@ if($h14 == "autorizado")
             <script src="../javascript/jquery-3.3.1.min.js"></script>
             <script src="../javascript/calendario.js"></script>
         </head>
-       <body onload='cargar_region(1)'>
+       <body onload='cargar_region(2)'>
             <?php include "menu_p.php";?>
             <div class="contenido">
             <?php include "menu.php";?>
             </div>
 
             <div class='buscar'>
-                <button id='boton_agregar' class='input_boton' style='float:left; position:relative; left:5%; width:10%; cursor:hand; display: block;' onclick='abrir_formulario()'>Agregar Curso</button>
                 <div class='buscador' style="margin-top:55px; position:relative; right:6%; display:block;">
                     <input id="buscar" type="text" name="buscar" placeholder="Instructor, título de capacitación o sucursal." style="width:75%; text-align:left; padding:5px; margin-right:21%">
                     <!--<input type="submit" value="Buscar" style="cursor:hand; width:20%">-->
-                    <button id='boton_buscar' class='input_boton' style='width: 20%; cursor:hand' onclick='mostrar_registros()'>Buscar</button>
+                    <button id='boton_buscar' class='input_boton' style='width: 20%; cursor:hand' onclick='mostrar_registros_pendientes()'>Buscar</button>
                 </div>
             </div>
 
@@ -94,7 +93,7 @@ if($h14 == "autorizado")
                     <input type='text' style='width:350px; padding: 5px;' id='correo' maxlength='50' readonly>
                 </div>
                 <div style='float:left;'>
-                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='mostrar_registros()'>Agregar</button>            
+                    <button id='guardar' class='input_boton' style='position: relative; margin-top: 50px; left: 215px; width: 100px; cursor:hand;' onclick='mostrar_registros_pendientes()'>Agregar</button>            
                 </div>
                 <br>
             </div>
