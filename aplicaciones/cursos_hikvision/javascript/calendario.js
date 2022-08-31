@@ -1,5 +1,6 @@
 var global_nombre = new Array(); /* ejemplo variable global */
 var tabla_cursos
+var id_curso
 
 $(document).ready(function()
 {    
@@ -286,6 +287,7 @@ function validar()
 
 function limpiar()
 {
+    id_curso = ""
     $("#fecha").val("")
     $("#hora").val("")
     $("#tipo_capacitacion").val("")
@@ -454,18 +456,18 @@ function mostrar_registros_pendientes()
                     var codigo = ""+
                     "<div class='cuadro1' style='overflow:auto; height:80%; margin-top:33px'>"+
                         "<table style='width:90%; margin:auto; border-spacing:0;'>"+
-                            "<thead style='position:sticky; top:0; background-color: #FFF'>"+
+                            "<thead style='position:sticky; top:0; background-color:#FFF; z-index:1'>"+
                                 "<tr>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Fecha<b></td>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Hora<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Fecha</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Hora</td>"+
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b>Instructor</td>"+
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b>Correo</td>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Título de Capacitación<b></td>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Capacitación<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Título de Capacitación</td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Capacitación</td>"+
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b>Tipo de Cliente</td>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Sucursal<b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b>Sucursal</td>"+
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b>Publicar en SYSCOM.MX?</td>"+
-                                    "<td style='padding:3px; text-align:center; font-size:13px'><b><b></td>"+
+                                    "<td style='padding:3px; text-align:center; font-size:13px'><b></td>"+
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b></td>"+
                                 "</tr>"+
                             "</thead>"
@@ -518,7 +520,7 @@ function mostrar_registros_pendientes()
 
                                 codigo+=
                             "<tbod>"+
-                                "<tr class='color"+ a +"'>"+
+                                "<tr id='fila"+ x +"' class='color"+ a +"'>"+
                                     "<td style='padding:3.5px; width:8%; text-align:center'>" + tabla[x]["fecha"] + "</td>"+
                                     "<td style='padding:3.5px; width:6%; text-align:center'>" + tabla[x]["hora"] + "</td>"+
                                     "<td style='padding:3.5px; width:12%; text-align:center'>" + tabla[x]["nombre"] + " " + tabla[x]["apellido"] + "</td>"+
@@ -528,8 +530,8 @@ function mostrar_registros_pendientes()
                                     "<td style='padding:3.5px; width:13%; text-align:center'>" + tipo_cliente + "</td>"+
                                     "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["sucursal"] + "</td>"+
                                     "<td style='padding:3.5px; width:7%; text-align:center'>" + publicar + "</td>"+
-                                    "<td style='padding:3.5px; width:4%; text-align:center' class='eliminar"+ x +"'>" + "<button id='boton_eliminar' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='eliminar_registro()'>Eliminar</button>" + "</td>"+
-                                    "<td style='padding:3.5px; width:4%; text-align:center' class='registrado"+ x +"'>" + "<button id='boton_registrado' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='registro_listo()'>Listo</button>" + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='eliminar'>" + "<button id='boton_eliminar' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='eliminar_registro("+ x +")'>Eliminar</button>" + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='registrado'>" + "<button id='boton_registrado' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='registro_listo("+ x +")'>Listo</button>" + "</td>"+
                                 "</tr>"+
                             "</tbod>"
                             if(a==1)
@@ -552,24 +554,38 @@ function mostrar_registros_pendientes()
     })
 }
 
-/*function eliminar_registro()
+function eliminar_registro(_id)
 {
-    $.post("../panel/funciones/eliminar_registro.php",
-    {
-    },
-    function(respuesta)
-    {
+    var id_curso = tabla_cursos[_id]["fecha"]
+    var titulo_capacitacion = tabla_cursos[_id]["titulo_capacitacion"]
 
-    })
+    if(confirm("¿Realmente desea eliminar el curso " + titulo_capacitacion + "?") == true)
+    {
+        $.post("../panel/funciones/eliminar_registro.php",
+        {
+            id: id_curso
+        },
+        function(respuesta)
+        {
+            switch(parseInt(respuesta))
+            {
+                case 1:
+                    {
+                        alert("Curso " + titulo_capacitacion + " eliminado correctamente")
+                        mostrar_registros_pendientes()
+                    }
+                    break
+                default:
+                {
+                    alert("Ocurrió un error, por favor contacte al administrador.\n\nError: " + respuesta)
+                }
+                break
+            }
+        })
+    }
 }
 
 function registro_listo()
 {
-    $.post("../panel/funciones/registro_listo.php",
-    {
-    },
-    function(respuesta)
-    {
-
-    })
-}*/
+    $("#boton_registrado").click(function(){$("#fila"+ x +"").hide()})
+}

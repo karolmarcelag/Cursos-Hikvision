@@ -24,7 +24,6 @@ if($h14 == "autorizado")
             <div class='buscar'>
                 <div class='buscador' style="margin-top:55px; position:relative; right:6%; display:block;">
                     <input id="buscar" type="text" name="buscar" placeholder="Instructor, título de capacitación o sucursal." style="width:75%; text-align:left; padding:5px; margin-right:21%">
-                    <!--<input type="submit" value="Buscar" style="cursor:hand; width:20%">-->
                     <button id='boton_buscar' class='input_boton' style='width: 20%; cursor:hand' onclick='mostrar_registros_pendientes()'>Buscar</button>
                 </div>
             </div>

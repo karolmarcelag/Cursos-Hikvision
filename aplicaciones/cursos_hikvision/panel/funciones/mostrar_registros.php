@@ -5,13 +5,14 @@ $arreglo = array();
 $x = 0;
 $filtro = $_POST["filtro"];
 
-$query ="select a.fecha, a.hora, b.nombre, b.apellido, b.correo, c.titulo as 'titulo_capacitacion', c.tipo_capacitacion, a.tipo_cliente, d.nombre as 'sucursal', a.publicar 
+$query ="select a.id, a.fecha, a.hora, b.nombre, b.apellido, b.correo, c.titulo as 'titulo_capacitacion', c.tipo_capacitacion, a.tipo_cliente, d.nombre as 'sucursal', a.publicar 
 from ((cursos_hikvision.evento a inner join cursos_hikvision.instructor b) inner join cursos_hikvision.capacitacion c) inner join cursos_hikvision.sucursal d
 on a.id_instructor = b.id and a.id_capacitacion = c.id and a.id_sucursal = d.id and concat(b.nombre, ' ', b.apellido, ' ', c.titulo, ' ', c.tipo_capacitacion, ' ', d.nombre, ' ') like '%$filtro%'
 order by a.fecha;";
 $consulta = mysqli_query($conexion,$query);
 while($tabla = mysqli_fetch_array($consulta))
 {
+    $arreglo[$x]["id"] = $tabla["id"];
     $arreglo[$x]["fecha"] = $tabla["fecha"];
     $arreglo[$x]["hora"] = $tabla["hora"];
     $arreglo[$x]["nombre"] = $tabla["nombre"];
