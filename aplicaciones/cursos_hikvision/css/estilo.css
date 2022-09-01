@@ -53,3 +53,16 @@ table
     width: 50%;
     margin-left: 50%;
 }
+
+#mensaje1
+{
+    position: absolute;
+    width: 300px;
+    margin-left: 40%;
+    margin-top: -836px;
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+    color: #ffffff;
+    display: none;
+}

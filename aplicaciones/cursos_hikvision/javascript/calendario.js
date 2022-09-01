@@ -433,7 +433,7 @@ function mostrar_registros()
 
 function mostrar_registros_pendientes()
 {
-    $.post("../panel/funciones/mostrar_registros.php",
+    $.post("../panel/funciones/mostrar_registros_pendientes.php",
     {
         filtro:$("#buscar").val()
     },
@@ -554,12 +554,18 @@ function mostrar_registros_pendientes()
     })
 }
 
+function ocultar()
+{
+    $("#mensaje1").css({"display":"none"})
+}
+
 function eliminar_registro(_id)
 {
-    var id_curso = tabla_cursos[_id]["fecha"]
+    var id_curso = tabla_cursos[_id]["id"]
     var titulo_capacitacion = tabla_cursos[_id]["titulo_capacitacion"]
+    var fecha = tabla_cursos[_id]["fecha"]
 
-    if(confirm("¿Realmente desea eliminar el curso " + titulo_capacitacion + "?") == true)
+    if(confirm("¿Realmente desea eliminar el curso " + titulo_capacitacion + " del día " + fecha + "?") == true)
     {
         $.post("../panel/funciones/eliminar_registro.php",
         {
@@ -571,7 +577,9 @@ function eliminar_registro(_id)
             {
                 case 1:
                     {
-                        alert("Curso " + titulo_capacitacion + " eliminado correctamente")
+                        //alert("Curso " + titulo_capacitacion + " del " + fecha + " eliminado correctamente")
+                        $("#mensaje1").css({"display":"block"})
+                        setTimeout(ocultar, 2000)
                         mostrar_registros_pendientes()
                     }
                     break
@@ -585,7 +593,37 @@ function eliminar_registro(_id)
     }
 }
 
-function registro_listo()
+function registro_listo(_id)
 {
-    $("#boton_registrado").click(function(){$("#fila"+ x +"").hide()})
+    var id_curso = tabla_cursos[_id]["id"]
+    var titulo_capacitacion = tabla_cursos[_id]["titulo_capacitacion"]
+    var fecha = tabla_cursos[_id]["fecha"]
+
+    if(confirm("¿Realmente desea actualizar el curso " + titulo_capacitacion + " del día " + fecha + "?") == true)
+    {
+        $.post("../panel/funciones/registro_listo.php",
+        {
+            id: id_curso
+        },
+        function(respuesta)
+        {
+            switch(parseInt(respuesta))
+            {
+                case 1:
+                    {
+                        $("#mensaje1").css({"display":"block"})
+                        $("#mensaje1").html("Curso actualizado correctamente")
+                        setTimeout(ocultar, 2000)
+                        mostrar_registros_pendientes()
+                    }
+                    break
+                default:
+                {
+                    alert("Ocurrió un error, por favor contacte al administrador.\n\nError: " + respuesta)
+                }
+                break
+            }
+        })
+    }
+    
 }
