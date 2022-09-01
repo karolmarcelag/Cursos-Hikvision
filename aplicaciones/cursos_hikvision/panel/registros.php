@@ -97,7 +97,7 @@ if($h14 == "autorizado")
                 </div>
                 <br>
             </div>
-            
+            <span id="tabla"></span>
         </body>
     </html>
 <?php

@@ -8,7 +8,8 @@
     <div class="ligas">
         <?php
         echo "<a href='index.php' title='Calendario'><button class='btn_menu'><img src='../imagenes/calendario.png' width='12px'> Calendario</button></a>";
-        echo "<a href='index2.php' title='Registros pendientes'><button class='btn_menu'><img src='../imagenes/copiar.png' width='12px'> Registros pendientes</button></a>";
+        echo "<a href='registros.php' title='Registros'><button class='btn_menu'><img src='../imagenes/reporte.png' width='12px'> Registros</button></a>";
+        echo "<a href='registros_pendientes.php' title='Registros pendientes'><button class='btn_menu'><img src='../imagenes/copiar.png' width='12px'> Registros pendientes</button></a>";
         ?>
     </div>
 </div>
