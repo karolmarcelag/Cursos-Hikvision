@@ -3,9 +3,9 @@ session_start();
 $h14 = $_SESSION["ing_h14"];
 if($h14 == "autorizado")
 {
-    require_once ("../../../conexion.php");
-    ?>
-    <html>
+    require_once ("../../../conexion.php");?>
+    <!DOCTYPE html>
+    <html lang="en-US">
         <head>
             <title>Cursos Hikvision</title>
             <link rel="stylesheet" type="text/css" href="../css/vuelos.css" media="all"/>
@@ -14,6 +14,13 @@ if($h14 == "autorizado")
             <script src="../javascript/jquery-3.3.1.js"></script>
             <script src="../javascript/jquery-3.3.1.min.js"></script>
             <script src="../javascript/calendario.js"></script>
+            <script src="../javascript/calendar.js"></script>
+            <!--<link href='https://fullcalendar.io/docs/dist/demo-to-codepen.css' rel='stylesheet' />-->
+            <!--<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>-->
+            <link href='../css/fullcalendar.css' rel='stylesheet' />
+            <script src='../javascript/fullcalendar.js'></script>
+            <!--<script src='https://fullcalendar.io/docs/dist/demo-to-codepen.js'></script>-->
         </head>
        <body onload='cargar_region(1)'>
             <?php include "menu_p.php";?>
@@ -97,7 +104,8 @@ if($h14 == "autorizado")
                 </div>
                 <br>
             </div>
-            
+            <div id='calendar'></div>
+
         </body>
     </html>
 <?php
