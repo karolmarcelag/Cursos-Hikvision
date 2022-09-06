@@ -46,6 +46,7 @@ table
 {
     width: 100%;
     text-align: right;
+    margin-bottom: -10px;
 }
 
 .buscador
@@ -79,4 +80,13 @@ table
 {
     max-width: 1100px;
     margin: 40px auto;
+}
+
+input:not([type="image" i]) {
+    box-sizing: border-box;
+}
+
+.fc-today-button
+{
+    position: absolute;
 }

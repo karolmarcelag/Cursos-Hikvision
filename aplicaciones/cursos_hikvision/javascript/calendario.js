@@ -326,7 +326,7 @@ function mostrar_registros()
         {
             case -1:
                 {
-                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b>Aún no hay registros</b></div>")
+                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b><br>Aún no hay registros</div>")
                 }
                 break
             default:
@@ -445,7 +445,7 @@ function mostrar_registros_pendientes()
         {
             case -1:
                 {
-                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b>Aún no hay registros</b></div>")
+                    $("#tabla").html("<div style='width:100%; margin-top:15px; text-align:center'><b><br>Aún no hay registros</div>")
                 }
                 break
             default:
