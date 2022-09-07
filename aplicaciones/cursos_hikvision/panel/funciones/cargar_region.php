@@ -18,8 +18,8 @@ if($h14 == "autorizado")
         $x++;
     }
 
-    echo json_encode($arreglo); 
-
+    echo json_encode($arreglo);
+    
 }
 else
 {

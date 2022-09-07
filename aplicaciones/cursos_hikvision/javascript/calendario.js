@@ -30,6 +30,11 @@ function cargar_region(tipo)
                 mostrar_registros_pendientes()
             }
             break
+        case 3:
+            {
+                cargar_eventos()
+            }
+            break
     }
     $.post("../panel/funciones/cargar_region.php",
     {
@@ -58,6 +63,34 @@ function cargar_region(tipo)
         }
 
     });
+}
+
+function cargar_eventos()
+{
+    $.post("../panel/funciones/cargar_eventos.php",
+    {
+        filtro: $("#buscar").val()
+    },
+    function(result)
+    {
+        tabla = JSON.parse(result);
+
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, 
+        {
+            initialView: 'dayGridMonth',
+            initialDate: '2022-08-07',
+            headerToolbar: 
+            {
+                left: 'prev,next today',
+                right: 'title',
+            },
+            events: tabla
+        })
+    
+        calendar.render()
+    })
 }
 
 function campos_capacitacion()
@@ -316,10 +349,11 @@ function mostrar_registros()
 {
     $.post("../panel/funciones/mostrar_registros.php",
     {
-        filtro:$("#buscar").val()
+        filtro: $("#buscar").val()
     },
     function(respuesta)
     {
+        console.log(respuesta)
         $("#buscar").val("")
 
         switch(parseInt(respuesta))
