@@ -116,63 +116,66 @@ if($h14 == "autorizado")
                     <br>      
                     <div style='float:left; margin-right:10px;'>
                         Fecha:<br>
-                        <div style='background:red; width:170px; padding:8px'><?php echo $tabla["fecha"]; ?></div>
+                        <div class='div_lectura'><?php echo $tabla["fecha"]; ?></div>
                     </div>
                     <div style='float: left;margin-right: 10px;'>
                         Hora Inicio:<br>
-                        <input type='time' id='hora' style='width:170px;' disabled value='<?php echo $tabla["hora"]; ?>'>
+                        <div class='div_lectura'><?php echo $tabla["hora"]; ?></div>
                     </div>  
                     <div style='float:left;'>
                         Tipo de Capacitación:<br>
-                        <select id='tipo_capacitacion' style='width:170px;' onchange='campos_capacitacion()' disabled>
-                            <option value='0'>Seleccione una opción..</option>
-                            <option value='1'>Plática Comercial</option>
-                            <option value='2'>Certificación</option>
-                        </select>
+                        <div class='div_lectura'><?php
+                        switch($tabla["tipo_capacitacion"])
+                        {
+                            case "1":
+                                echo "Plática Comercial";
+                                break;
+                            case "2":
+                                echo "Certificación";
+                                break;
+                        } ?></div>
                     </div>
-                    <div style='float:left; margin-top:10px;margin-right:10px'>
+                    <div style='float:left; margin-top:10px; margin-right:10px'>
                         Titulo de Capacitación:<br>
-                        <select id='titulo' style='width:170px' disabled>
-                        </select>
-                    </div>    
-                    <div style='float:left; margin-top:10px; margin-right:10px;'>
-                        Región:<br>
-                        <select id='region' style='width:170px' onchange='campos_sucursal_instructor()' disabled>
-                        </select>
+                        <div class='div_lectura'><?php echo $tabla["titulo_capacitacion"]; ?></div>
                     </div>
-                    <div style='float:left; margin-top:10px;'>
+                    <div style='float:left; margin-top:10px; margin-right:10px'>
                         Sucursal:<br>
-                        <select id='sucursal' style='width:170px' onchange='campo_aforo()' disabled>
-                        </select>
-                    </div>
-                    <div style='float:left; margin-top:10px; margin-right:10px;'>
-                        Aforo:<br>
-                        <input type='number' style='width:170px; padding:5px;' id='aforo' readonly disabled>
-                    </div>
-                    <div style='float:left; margin-top:10px; margin-right:10px;'>
-                        Tipo de Cliente:<br>
-                        <select id='tipo_cliente' style='width:170px' disabled>
-                            <option value='0'>Seleccione una opción..</option>
-                            <option value='1'>Clientes en General</option>
-                            <option value='2'>DPP</option>
-                        </select>
-                    </div>
-                    <div style='float:left; margin-top:10px;'>
-                        Se publica en SYSCOM.MX?<br>
-                        <select id='publicar' style='width:170px' disabled>
-                            <option value='0'>Seleccione una opción..</option>
-                            <option value='1'>Si</option>
-                            <option value='2'>No</option>
-                        </select>
-                    </div>
-                    <div style='float:left; margin-top:10px;margin-right:10px'>
-                        Instructor:<br>
-                        <select id='instructor' style='width:170px' onchange='campo_correo()' disabled>
-                        </select>
+                        <div class='div_lectura'><?php echo $tabla["sucursal"]; ?></div>
                     </div>
                     <div style='float:left; margin-top:10px'>
+                        Tipo de Cliente:<br>
+                        <div class='div_lectura'><?php
+                        switch($tabla["tipo_cliente"])
+                        {
+                            case "1":
+                                echo "Clientes en General";
+                                break;
+                            case "2":
+                                echo "DPP";
+                                break;
+                        } ?></div>
+                    </div>
+                    <div style='float:left; margin-top:10px; margin-right:10px'>
+                        Se publica en SYSCOM.MX?<br>
+                        <div class='div_lectura' style='width:160px;'><?php
+                        switch($tabla["publicar"])
+                        {
+                            case "1":
+                                echo "Si";
+                                break;
+                            case "2":
+                                echo "No";
+                                break;
+                        } ?></div>
+                    </div>
+                    <div style='float:left; margin-top:10px; margin-right:10px'>
+                        Instructor:<br>
+                        <div class='div_lectura' style='width:150px;'><?php echo $tabla["nombre"]." ".$tabla["apellido"]; ?></div>
+                    </div>
+                    <div style='float:left; margin-top:10px; width:200px'>
                         Correo del Instructor:<br>
-                        <input type='text' style='width:350px; padding:5px;' id='correo' maxlength='50' readonly disabled>
+                        <div class='div_lectura' style='width:200px;'><?php echo $tabla["correo"]; ?></div>
                     </div>
                 </div>
                 <?php

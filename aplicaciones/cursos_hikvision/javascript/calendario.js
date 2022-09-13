@@ -42,7 +42,6 @@ function cargar_region(tipo)
     },
     function(result)
     {
-        console.log(result)
         tabla = JSON.parse(result);
         tabla_cargar_region = tabla;
 
@@ -67,8 +66,6 @@ function cargar_region(tipo)
 
 function cargar_eventos()
 {
-    console.log("ok")
-    
     $.post("../panel/funciones/cargar_eventos.php",
     {
         filtro: $("#buscar").val()
@@ -102,7 +99,6 @@ function campos_capacitacion()
     },
     function(result)
     {
-        console.log(result)
         tabla = JSON.parse(result);
         tabla_campos_capacitacion = tabla;
 
@@ -135,9 +131,7 @@ function campos_sucursal_instructor()
     },
     function(result)
     {
-        console.log(result)
         tabla = JSON.parse(result);
-        console.table(tabla)
         tabla_campos_sucursal_instructor = tabla;
 
         $("#sucursal").empty()
@@ -186,7 +180,6 @@ function campo_aforo()
     },
     function(result)
     {
-        console.log(result)
         tabla = JSON.parse(result);
         tabla_campo_aforo = tabla;
         
@@ -203,7 +196,6 @@ function campo_correo()
     },
     function(result)
     {
-        console.log(result)
         tabla = JSON.parse(result);
         tabla_campo_correo = tabla;
 
@@ -250,9 +242,6 @@ function guardar_registro()
                     break
             }
             $("#guardar").prop({"disabled":false})
-            console.log("Fecha: "+$("#fecha").val())
-            console.log("Hora: "+$("#hora").val())
-            console.log(respuesta)
         })
     }
     else
@@ -265,7 +254,7 @@ function validar()
 {
     var input_fecha = ["fecha"]
     var input_hora = ["hora"]
-    var input_texto = ["titulo", "sucursal", "tipo_cliente", "publicar", "instructor"]
+    var input_texto = ["tipo_capacitacion", "titulo", "region", "sucursal", "tipo_cliente", "publicar", "instructor"]
     var acumulado = 0
 
     for(x=0; x<input_fecha.length; x++)
@@ -356,7 +345,6 @@ function mostrar_registros()
     },
     function(respuesta)
     {
-        console.log(respuesta)
         $("#buscar").val("")
 
         switch(parseInt(respuesta))
@@ -368,14 +356,7 @@ function mostrar_registros()
                 break
             default:
                 {
-                    try 
-                    {
-                        var tabla = JSON.parse(respuesta);
-                    }
-                    catch (error)
-                    {
-                        console.log('Error parsing JSON: ', error, respuesta);
-                    }
+                    var tabla = JSON.parse(respuesta);
                     tabla_cursos = tabla
 
                     var codigo = ""+
@@ -394,7 +375,6 @@ function mostrar_registros()
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b>Publicar en SYSCOM.MX?</td>"+
                                 "</tr>"+
                             "</thead>"
-                        console.log(tabla.length)
                         a = 1
                         for(x=0; x<tabla.length; x++)
                         {
@@ -515,7 +495,6 @@ function mostrar_registros_pendientes()
                                     "<td style='padding:3px; text-align:center; font-size:13px'><b></td>"+
                                 "</tr>"+
                             "</thead>"
-                        console.log(tabla.length)
                         a = 1
                         for(x=0; x<tabla.length; x++)
                         {
@@ -621,10 +600,9 @@ function eliminar_registro(_id)
             {
                 case 1:
                     {
-                        //alert("Curso " + titulo_capacitacion + " del " + fecha + " eliminado correctamente")
                         $("#mensaje1").css({"display":"block"})
                         $("#mensaje1").html("Curso eliminado correctamente")
-                        setTimeout(ocultar, 2500)
+                        setTimeout(ocultar, 2250)
                         mostrar_registros_pendientes()
                     }
                     break
@@ -652,13 +630,14 @@ function registro_listo(_id)
         },
         function(respuesta)
         {
+            console.log(respuesta)
             switch(parseInt(respuesta))
             {
                 case 1:
                     {
                         $("#mensaje1").css({"display":"block"})
                         $("#mensaje1").html("Curso actualizado correctamente")
-                        setTimeout(ocultar, 2500)
+                        setTimeout(ocultar, 2250)
                         mostrar_registros_pendientes()
                     }
                     break
@@ -670,5 +649,4 @@ function registro_listo(_id)
             }
         })
     }
-    
 }

@@ -19,7 +19,6 @@ if($h14 == "autorizado")
     }
 
     echo json_encode($arreglo);
-    
 }
 else
 {
