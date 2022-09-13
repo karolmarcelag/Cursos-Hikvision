@@ -62,7 +62,7 @@ if($h14 == "autorizado")
                 </div>
                 <div style='float:left; margin-top:10px;'>
                     Sucursal:<br>
-                    <select id='sucursal' style='width:170px' onchange='campo_aforo()'>
+                    <select id='sucursal' name='sucursal' style='width:170px' onchange='campo_aforo()'>
                     </select>
                 </div>
                 <div style='float:left; margin-top:10px; margin-right:10px;'>

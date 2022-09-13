@@ -206,7 +206,10 @@ function campo_correo()
 
 function guardar_registro()
 {
-    if(validar() == true)
+    console.log($('select[name="sucursal"] option:selected').text())
+    //console.log($('#sucursal').text())
+    //console.log($('select[name="sucursal"] option:selected').text())
+    /*if(validar() == true)
     {
         $("#guardar").prop({"disabled":true})
         $.post("../panel/funciones/guardar_registro.php",
@@ -215,12 +218,14 @@ function guardar_registro()
             hora: $("#hora").val(),
             titulo: $("#titulo").val(),
             sucursal: $("#sucursal").val(),
+            nombre_sucursal: $("#sucursal").html(),
             tipo_cliente: $("#tipo_cliente").val(),
             publicar: $("#publicar").val(),
             instructor: $("#instructor").val()
         },
         function(respuesta)
         {
+            
             switch(parseInt(respuesta))
             {
                 case 1:
@@ -235,6 +240,11 @@ function guardar_registro()
                         alert("Esta fecha ya está ocupada")
                     }
                     break
+                case 3:
+                    {
+                        alert("Sala ocupada por curso presencial de SYSCOM")
+                    }
+                    break
                 default:
                     {
                         alert("Ocurrió un error, por favor contacta al administrador\n\nError: " + respuesta)
@@ -247,7 +257,7 @@ function guardar_registro()
     else
     {
         alert("Por favor complete correctamente los campos en color rojo")
-    }
+    }*/
 }
 
 function validar()
