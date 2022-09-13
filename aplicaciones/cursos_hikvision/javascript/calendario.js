@@ -67,20 +67,21 @@ function cargar_region(tipo)
 
 function cargar_eventos()
 {
+    console.log("ok")
+    
     $.post("../panel/funciones/cargar_eventos.php",
     {
         filtro: $("#buscar").val()
     },
     function(result)
     {
-        tabla = JSON.parse(result);
-
+        $("#calendar").html("")
+        var tabla = JSON.parse(result);
         var calendarEl = document.getElementById('calendar');
-
         var calendar = new FullCalendar.Calendar(calendarEl, 
         {
             initialView: 'dayGridMonth',
-            initialDate: '2022-08-07',
+            //initialDate: '2022-08-07',
             headerToolbar: 
             {
                 left: 'prev,next today',
@@ -233,6 +234,7 @@ function guardar_registro()
                 case 1:
                     {
                         alert("Registro agregado correctamente")
+                        cargar_eventos()
                         limpiar()
                     }
                     break
@@ -343,6 +345,7 @@ function abrir_formulario()
 function cerrar_formulario()
 {
     $("#formulario").css({"display":"none"})
+    $("#formulario_lectura").css({"display":"none"})
 }
 
 function mostrar_registros()
@@ -365,7 +368,14 @@ function mostrar_registros()
                 break
             default:
                 {
-                    var tabla = JSON.parse(respuesta)
+                    try 
+                    {
+                        var tabla = JSON.parse(respuesta);
+                    }
+                    catch (error)
+                    {
+                        console.log('Error parsing JSON: ', error, respuesta);
+                    }
                     tabla_cursos = tabla
 
                     var codigo = ""+
@@ -564,8 +574,8 @@ function mostrar_registros_pendientes()
                                     "<td style='padding:3.5px; width:13%; text-align:center'>" + tipo_cliente + "</td>"+
                                     "<td style='padding:3.5px; width:10%; text-align:center'>" + tabla[x]["sucursal"] + "</td>"+
                                     "<td style='padding:3.5px; width:7%; text-align:center'>" + publicar + "</td>"+
-                                    "<td style='padding:3.5px; width:4%; text-align:center' class='eliminar'>" + "<button id='boton_eliminar' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='eliminar_registro("+ x +")'>Eliminar</button>" + "</td>"+
-                                    "<td style='padding:3.5px; width:4%; text-align:center' class='registrado'>" + "<button id='boton_registrado' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px' onclick='registro_listo("+ x +")'>Listo</button>" + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='eliminar'>" + "<button id='boton_eliminar' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px; background-color:#707070; border-color:#707070' onclick='eliminar_registro("+ x +")'>Eliminar</button>" + "</td>"+
+                                    "<td style='padding:3.5px; width:4%; text-align:center' class='registrado'>" + "<button id='boton_registrado' class='input_boton' style='min-width:61px; position:relative; cursor:hand; height:22px; background-color:#707070; border-color:#707070' onclick='registro_listo("+ x +")'>Listo</button>" + "</td>"+
                                 "</tr>"+
                             "</tbod>"
                             if(a==1)
@@ -613,7 +623,8 @@ function eliminar_registro(_id)
                     {
                         //alert("Curso " + titulo_capacitacion + " del " + fecha + " eliminado correctamente")
                         $("#mensaje1").css({"display":"block"})
-                        setTimeout(ocultar, 2000)
+                        $("#mensaje1").html("Curso eliminado correctamente")
+                        setTimeout(ocultar, 2500)
                         mostrar_registros_pendientes()
                     }
                     break
@@ -647,7 +658,7 @@ function registro_listo(_id)
                     {
                         $("#mensaje1").css({"display":"block"})
                         $("#mensaje1").html("Curso actualizado correctamente")
-                        setTimeout(ocultar, 2000)
+                        setTimeout(ocultar, 2500)
                         mostrar_registros_pendientes()
                     }
                     break

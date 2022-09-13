@@ -247,8 +247,9 @@ textarea {
     font-size: 13px;
     text-align: center;
     min-width: 70px;
-    background: #fff;
-    border: 1px solid #a9a9a9;
+    background: #cc0f16;
+    border: 1px solid #cc0f16;
+    color: #fff;
     border-radius: 3px;
     right: 0;
     position: absolute;
