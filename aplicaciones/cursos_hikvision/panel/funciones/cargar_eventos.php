@@ -20,6 +20,15 @@ if($h14 == "autorizado")
         $x++;
     }
 
+    $consulta2 = mysqli_query($conexion,"select fecha1, fecha2, salas from cursos_presenciales.cursos");
+    while($tabla2 = mysqli_fetch_array($consulta2))
+    {
+        $arreglo[$x]["title"] = "NO DISPONIBLE - ".$tabla2["salas"];
+        $arreglo[$x]["start"] = $tabla2["fecha1"];
+        $arreglo[$x]["end"] = $tabla2["fecha2"];
+        $x++;
+    }
+
     echo json_encode($arreglo);
 }
 else
