@@ -19,7 +19,7 @@ if($h14 == "autorizado")
     $registros = mysqli_num_rows(mysqli_query($conexion,$query));
     if ($registros == 0)
     {
-        $query2 = "select id from cursos_presenciales.evento where fecha1='$fecha' and salas=$nombre_sucursal";
+        $query2 = "select id_cursos from cursos_presenciales.cursos where (fecha1='$fecha' or fecha2='$fecha') and salas='$nombre_sucursal'";
         $registros2 = mysqli_num_rows(mysqli_query($conexion,$query2));
         if($registros2 == 0)
         {
@@ -31,7 +31,6 @@ if($h14 == "autorizado")
         {
             echo "3";
         }
-        
     }
     else
     {

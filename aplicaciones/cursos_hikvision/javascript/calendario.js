@@ -64,8 +64,22 @@ function cargar_region(tipo)
     });
 }
 
-function cargar_eventos()
+function cargar_eventos(_fecha)
 {
+    /*var today = new Date()
+    
+    if(_fecha == null)
+    {
+        _fecha = today
+    }
+    else
+    {
+        _fecha = fecha_evento
+    }
+    console.log(fecha_evento)*/
+    _fecha = fecha_evento
+    console.log(fecha_evento)
+
     $.post("../panel/funciones/cargar_eventos.php",
     {
         filtro: $("#buscar").val()
@@ -78,7 +92,7 @@ function cargar_eventos()
         var calendar = new FullCalendar.Calendar(calendarEl, 
         {
             initialView: 'dayGridMonth',
-            //initialDate: '2022-08-07',
+            initialDate: _fecha,
             headerToolbar: 
             {
                 left: 'prev,next today',
@@ -207,9 +221,7 @@ function campo_correo()
 function guardar_registro()
 {
     console.log($('select[name="sucursal"] option:selected').text())
-    //console.log($('#sucursal').text())
-    //console.log($('select[name="sucursal"] option:selected').text())
-    /*if(validar() == true)
+    if(validar() == true)
     {
         $("#guardar").prop({"disabled":true})
         $.post("../panel/funciones/guardar_registro.php",
@@ -225,13 +237,12 @@ function guardar_registro()
         },
         function(respuesta)
         {
-            
             switch(parseInt(respuesta))
             {
                 case 1:
                     {
                         alert("Registro agregado correctamente")
-                        cargar_eventos()
+                        cargar_eventos($("#fecha").val())
                         limpiar()
                     }
                     break
@@ -257,7 +268,7 @@ function guardar_registro()
     else
     {
         alert("Por favor complete correctamente los campos en color rojo")
-    }*/
+    }
 }
 
 function validar()
@@ -370,7 +381,7 @@ function mostrar_registros()
                     tabla_cursos = tabla
 
                     var codigo = ""+
-                    "<div class='cuadro1' style='overflow:auto; height:80%; margin-top:33px'>"+
+                    "<div class='cuadro1' style='margin-top:33px'>"+
                         "<table style='width:90%; margin:auto; border-spacing:0;'>"+
                             "<thead style='position:sticky; top:0; background-color: #FFF'>"+
                                 "<tr>"+
@@ -488,7 +499,7 @@ function mostrar_registros_pendientes()
                     tabla_cursos = tabla
 
                     var codigo = ""+
-                    "<div class='cuadro1' style='overflow:auto; height:80%; margin-top:33px'>"+
+                    "<div class='cuadro1' style='margin-top:33px'>"+
                         "<table style='width:90%; margin:auto; border-spacing:0;'>"+
                             "<thead style='position:sticky; top:0; background-color:#FFF; z-index:1'>"+
                                 "<tr>"+
