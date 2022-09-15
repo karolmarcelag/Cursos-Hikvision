@@ -85,17 +85,6 @@ function cargar_eventos(_fecha)
     {
         _fecha_vista = _fecha
     }
-    console.log(_fecha_vista)
-
-    /*if(_fecha == null)
-    {
-        _fecha_vista = today
-    }
-    
-    if(fecha_evento != null && fecha_evento != "")
-    {
-        _fecha_vista = fecha_evento
-    }*/
 
     $.post("../panel/funciones/cargar_eventos.php",
     {
@@ -237,7 +226,6 @@ function campo_correo()
 
 function guardar_registro()
 {
-    console.log($('select[name="sucursal"] option:selected').text())
     if(validar() == true)
     {
         $("#guardar").prop({"disabled":true})
@@ -672,7 +660,6 @@ function registro_listo(_id)
         },
         function(respuesta)
         {
-            console.log(respuesta)
             switch(parseInt(respuesta))
             {
                 case 1:
