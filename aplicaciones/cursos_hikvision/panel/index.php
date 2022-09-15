@@ -44,7 +44,7 @@ if($h14 == "autorizado")
             </div>
 
             <div id='formulario' class='agregar_calendario' style='display: none;'>
-                <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:hand;' onclick='cerrar_formulario()'>
+                <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:pointer;' onclick='cerrar_formulario()'>
                 <br>      
                 <div style='float:left; margin-right:10px;'>
                     Fecha:<br>
@@ -107,7 +107,7 @@ if($h14 == "autorizado")
                     <input type='text' style='width:350px; padding:5px;' id='correo' maxlength='50' readonly>
                 </div>
                 <div style='float:left;'>
-                    <button id='guardar' class='input_boton' style='position:relative; margin-top:50px; left:215px; width:100px; cursor:hand;' onclick='mostrar_registros()'>Agregar</button>            
+                    <button id='guardar' class='input_boton' style='position:relative; margin-top:50px; left:215px; width:100px; cursor:pointer;' onclick='mostrar_registros()'>Agregar</button>            
                 </div>
                 <br>
             </div>
@@ -124,7 +124,7 @@ if($h14 == "autorizado")
                 ?>
 
                 <div id='formulario_lectura' class='agregar_calendario' style='margin-top:10%'>
-                    <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:hand;' onclick="cerrar_formulario_lectura()" >
+                    <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:pointer;' onclick="cerrar_formulario_lectura()" >
                     <br>      
                     <div style='float:left; margin-right:10px;'>
                         Fecha:<br>
