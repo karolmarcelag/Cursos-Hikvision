@@ -86,6 +86,7 @@ a{
     background: #CCC;
     border:none;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /*---------------*/

@@ -36,10 +36,10 @@ if($h14 == "autorizado")
             </div>
 
             <div class='buscar' style='margin-top:60px'>
-                <button id='boton_agregar' class='input_boton' style='float:left; position:relative; left:5%; width:10%; cursor:hand; display:block;' onclick='abrir_formulario()'>Agregar Curso</button>
+                <button id='boton_agregar' class='input_boton' style='float:left; position:relative; left:5%; width:10%; cursor:pointer; display:block;' onclick='abrir_formulario()'>Agregar Curso</button>
                 <div class='buscador' style="margin-top:55px; position:relative; right:6%; display:block;">
                     <input id="buscar" type="text" name="buscar" placeholder="Título de capacitación o sucursal." style="width:75%; text-align:left; padding:5px; margin-right:21%">
-                    <button id='boton_buscar' class='input_boton' style='width:20%; cursor:hand' onclick='cargar_eventos()'>Buscar</button>
+                    <button id='boton_buscar' class='input_boton' style='width:20%; cursor:pointer' onclick='cargar_eventos()'>Buscar</button>
                 </div>
             </div>
 
@@ -124,7 +124,7 @@ if($h14 == "autorizado")
                 ?>
 
                 <div id='formulario_lectura' class='agregar_calendario' style='margin-top:10%'>
-                    <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:hand;' onclick="cerrar_formulario()" >
+                    <img src='../imagenes/eliminar.png' style='width:15px; position:absolute; top:0; right:0; margin-right:5px; margin-top:5px; cursor:hand;' onclick="cerrar_formulario_lectura()" >
                     <br>      
                     <div style='float:left; margin-right:10px;'>
                         Fecha:<br>

@@ -66,19 +66,36 @@ function cargar_region(tipo)
 
 function cargar_eventos(_fecha)
 {
-    /*var today = new Date()
+    var today = new Date()
+    var _fecha_vista = ""
+
+    if(_fecha == null && fecha_evento == null)
+    {
+        _fecha_vista = today
+    }
+    if(_fecha == null && fecha_evento != null)
+    {
+        _fecha_vista = fecha_evento
+    }
+    if(_fecha != null && fecha_evento == null)
+    {
+        _fecha_vista = _fecha
+    }
+    if(_fecha != null && fecha_evento != null)
+    {
+        _fecha_vista = _fecha
+    }
+    console.log(_fecha_vista)
+
+    /*if(_fecha == null)
+    {
+        _fecha_vista = today
+    }
     
-    if(_fecha == null)
+    if(fecha_evento != null && fecha_evento != "")
     {
-        _fecha = today
-    }
-    else
-    {
-        _fecha = fecha_evento
-    }
-    console.log(fecha_evento)*/
-    _fecha = fecha_evento
-    console.log(fecha_evento)
+        _fecha_vista = fecha_evento
+    }*/
 
     $.post("../panel/funciones/cargar_eventos.php",
     {
@@ -92,7 +109,7 @@ function cargar_eventos(_fecha)
         var calendar = new FullCalendar.Calendar(calendarEl, 
         {
             initialView: 'dayGridMonth',
-            initialDate: _fecha,
+            initialDate: _fecha_vista,
             headerToolbar: 
             {
                 left: 'prev,next today',
@@ -355,6 +372,10 @@ function abrir_formulario()
 function cerrar_formulario()
 {
     $("#formulario").css({"display":"none"})
+}
+
+function cerrar_formulario_lectura()
+{
     $("#formulario_lectura").css({"display":"none"})
 }
 
