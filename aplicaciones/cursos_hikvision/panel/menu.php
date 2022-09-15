@@ -7,7 +7,8 @@
 <div class="menu">
     <div class="ligas">
         <?php
-        echo "<a href='index.php' title='Calendario'><button class='btn_menu'><img src='../imagenes/calendario.png' width='12px'> Calendario</button></a>";
+        $fecha_actual = date('Y-m-d');
+        echo "<a href='index.php?fecha=$fecha_actual' title='Calendario'><button class='btn_menu'><img src='../imagenes/calendario.png' width='12px'> Calendario</button></a>";
         echo "<a href='registros.php' title='Registros'><button class='btn_menu'><img src='../imagenes/reporte.png' width='12px'> Registros</button></a>";
         echo "<a href='registros_pendientes.php' title='Registros pendientes'><button class='btn_menu'><img src='../imagenes/copiar.png' width='12px'> Registros pendientes</button></a>";
         ?>
