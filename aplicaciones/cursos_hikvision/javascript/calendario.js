@@ -69,19 +69,19 @@ function cargar_eventos(_fecha)
     var today = new Date()
     var _fecha_vista = ""
 
-    if(_fecha == null && fecha_evento == null)
+    if((_fecha == null || _fecha == "") && (fecha_evento == null || fecha_evento == ""))
     {
         _fecha_vista = today
     }
-    if(_fecha == null && fecha_evento != null)
+    if((_fecha == null || _fecha == "") && (fecha_evento != null || fecha_evento != ""))
     {
         _fecha_vista = fecha_evento
     }
-    if(_fecha != null && fecha_evento == null)
+    if((_fecha != null || _fecha != "") && (fecha_evento == null || fecha_evento == ""))
     {
         _fecha_vista = _fecha
     }
-    if(_fecha != null && fecha_evento != null)
+    if((_fecha != null || _fecha != "") && (fecha_evento != null || fecha_evento != ""))
     {
         _fecha_vista = _fecha
     }
